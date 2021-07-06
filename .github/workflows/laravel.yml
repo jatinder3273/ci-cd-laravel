@@ -28,13 +28,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Deployment
+      - name: Deploy to ${{ secrets.SSH_HOST }}, executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@main
         with:
           host: ${{ secrets.SSH_HOST }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           username: ${{ secrets.SSH_USERNAME }}
           script: |
-            cd /var/www/html/
+            cd /var/www/html/ci-cd-laravel
             git checkout -f 
             git pull
